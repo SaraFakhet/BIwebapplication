@@ -26,7 +26,7 @@ const options = {
   definition: {
     swagger: '2.0', // Specification (optional, defaults to swagger: '2.0')
     info: {
-      title: 'process.env.APP_NAME', // Title (required)
+      title: process.env.APP_NAME, // Title (required)
       version: '1.0.0', // Version (required)
     },
     servers : [{"url" : "/", "description" : "Local dev"}]
