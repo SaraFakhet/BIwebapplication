@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form method="POST" action="/api/user">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="firstName" name="firstName" value="John"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lastName" name="lastName" value="Doe"><br><br>
+    <button type="submit" value="Submit">Submit</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>FirstName</td>
+            <td>LastName</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0;  i < users.length; i++) {%>
+            <tr>
+                <td>
+                    <%=users[i].dataValues.firstName%>
+                    <%=users[i].dataValues.lastName%>
+                </td>
+            </tr>
+        <%}%>
+    </tbody>
+</table>
+
+</body>
+</html>
