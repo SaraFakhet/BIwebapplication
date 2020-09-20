@@ -1,0 +1,11 @@
+# v0: (very) basic CI
+image: node:alpine
+
+cache:
+  paths:
+    - node_modules/
+
+test_test:
+  script:
+    - npm install
+    - npm test
