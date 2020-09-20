@@ -15,6 +15,17 @@ var template = require('../controller/template_controller')(app);
 
 router.get('/', template.index)
 
+router.get('/decisionnel/hello', function (req, res) {
+  res.send('Hello World!')
+    }
+)
+
+router.post('/:text/hello', function (req, res, next) {
+  res.send('Hello World! ' + req.params.text)
+    }
+)
+
+
 /**@swagger
  * /users:
  *   get:
