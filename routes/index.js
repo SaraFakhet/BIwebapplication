@@ -20,7 +20,7 @@ router.get('/decisionnel/hello', function (req, res) {
     }
 )
 
-router.post('/:text/hello', function (req, res, next) {
+router.post('/:text/hello', function (req, res) {
   res.send('Hello World! ' + req.params.text)
     }
 )
