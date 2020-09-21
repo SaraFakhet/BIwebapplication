@@ -53,9 +53,6 @@ var indexRouter = require('./routes/index');
 // ex : app.use('<redirection>', <route varname>)
 
 app.use('/', indexRouter);
-app.get('/ping', (req, res) => {
-  res.send('Hello World!')
-})
 
 
 /**********************************************************************/
