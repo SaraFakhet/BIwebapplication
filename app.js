@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var swaggerJSDoc = require('swagger-jsdoc');
-
+var morgan = require('morgan');
 
 
 const swaggerUi = require('swagger-ui-express');
@@ -21,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan("combined"));
 
 const options = {
   definition: {
@@ -52,7 +53,6 @@ var indexRouter = require('./routes/index');
 // ex : app.use('<redirection>', <route varname>)
 
 app.use('/', indexRouter);
-
 
 
 /**********************************************************************/
