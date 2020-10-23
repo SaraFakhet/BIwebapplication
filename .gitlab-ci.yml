@@ -8,4 +8,3 @@ cache:
 test_test:
   script:
     - npm install
-    - npm test
