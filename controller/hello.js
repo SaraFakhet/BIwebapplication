@@ -34,13 +34,13 @@ controller.helloAll = async function (req, res, next) {
                   result.push(JSON.stringify(response.data));
               })
               .catch((e) => {
-                  result.push(url.name + e);
+                  result.push(url.name + e.data);
               });
       });
   try {
     var mystring = "Hellos: ";
     for (const elm of result)
-      mystring = mystring + JSON.stringify(elm) + " -- ";
+      mystring = mystring + elm + " -- ";
 
     res.render("hello", { hellos: mystring });
   } catch (err) {
