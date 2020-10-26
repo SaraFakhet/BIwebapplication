@@ -9,7 +9,7 @@ module.exports = function(app) {
 controller.products = async function(req, res, next) {
     var result = "Products : ";
 
-    await axios.get(process.env.URL_REFERENTIEL_PRODUIT + '/produits').then(function (response) {
+    await axios.get(process.env.URL_GESTION_COMMERCIALE + '/produits').then(function (response) {
         result = result.concat(JSON.stringify(response.data));
     }).catch((err) => {
         result = result.concat(err.data);
