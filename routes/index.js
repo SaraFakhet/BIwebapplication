@@ -4,8 +4,8 @@ var app = express();
 var logger = require('../logs');
 
 var User = require('../models/user_template')(app);
+var hello = require('../controller/hello')(app);
 var template = require('../controller/template_controller')(app);
-
 
 
 /* GET home page. */
