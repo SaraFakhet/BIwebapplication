@@ -4,7 +4,6 @@ var app = express();
 var logger = require('../logs');
 
 var User = require('../models/user_template')(app);
-var hello = require('../controller/hello')(app);
 var template = require('../controller/template_controller')(app);
 
 
@@ -14,10 +13,6 @@ var template = require('../controller/template_controller')(app);
 });*/
 
 router.get('/', template.index)
-router.get('/decisionnel/hello', template.hello);
-router.get('/decisionnel/hello/all', template.helloall);
-router.get('/decisionnel/produits', template.produits);
-router.get('/decisionnel/clients', template.clients);
 
 
 /**@swagger
