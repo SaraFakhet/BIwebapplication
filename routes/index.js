@@ -5,8 +5,9 @@ var logger = require('../logs');
 
 var User = require('../models/user_template')(app);
 var template = require('../controller/template_controller')(app);
-
-
+var hello = require('../controller/hello')(app);
+var product = require('../controller/products')(app);
+var client = require('../controller/clients')(app);
 
 /* GET home page. */
 /*router.get('/', function(req, res, next) {
@@ -14,10 +15,10 @@ var template = require('../controller/template_controller')(app);
 });*/
 
 router.get('/', template.index)
-router.get('/decisionnel/hello', template.hello);
-router.get('/decisionnel/hello/all', template.helloall);
-router.get('/decisionnel/produits', template.produits);
-router.get('/decisionnel/clients', template.clients);
+router.get('/decisionnel/hello', hello.hello);
+router.get('/decisionnel/hello/all', hello.helloAll);
+router.get('/decisionnel/clients', client.clients);
+router.get('/decisionnel/produits', product.products);
 
 
 /**@swagger

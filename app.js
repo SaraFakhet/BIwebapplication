@@ -47,13 +47,19 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // ex : var <route varname> = require('<relative path>')
 
 var indexRouter = require('./routes/index');
-
+var helloRouter = require('./routes/hello');
+var helloAllRouter = require('./routes/hello');
+var productsRouter = require('./routes/products');
+var clientsRouter = require('./routes/clients');
 
 // Create a redirection
 // ex : app.use('<redirection>', <route varname>)
 
 app.use('/', indexRouter);
-
+app.use('/decisionnel/hello', helloRouter);
+app.use('/decisionnel/hello/all', helloAllRouter);
+app.use('./decisionnel/clients', clientsRouter);
+app.use('./decisionnel/produits', productsRouter);
 
 /**********************************************************************/
 /**********************************************************************/
