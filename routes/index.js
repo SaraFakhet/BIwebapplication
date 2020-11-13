@@ -8,6 +8,7 @@ var template = require('../controller/template_controller')(app);
 var hello = require('../controller/hello')(app);
 var product = require('../controller/products')(app);
 var client = require('../controller/clients')(app);
+var vente = require('../controller/sales')(app);
 
 /* GET home page. */
 /*router.get('/', function(req, res, next) {
@@ -19,6 +20,7 @@ router.get('/decisionnel/hello', hello.hello);
 router.get('/decisionnel/hello/all', hello.helloAll);
 router.get('/decisionnel/clients', client.clients);
 router.get('/decisionnel/produits', product.products);
+router.get('/decisionnel/ventes', vente.sales);
 
 
 /**@swagger
