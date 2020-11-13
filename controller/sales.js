@@ -6,8 +6,8 @@ module.exports = function(app) {
     return controller
 }
 
-controller.sells = async function(req, res, next) {
-    var result = "Sells : ";
+controller.sales = async function(req, res, next) {
+    var result = "Sales : ";
 
     await axios.get(process.env.URL_GESTION_COMMERCIALE + '/all-sales').then(function (response) {
         result = result.concat(JSON.stringify(response.data));
@@ -15,5 +15,5 @@ controller.sells = async function(req, res, next) {
         result = result.concat(err.data);
     });
 
-    res.render('sells', {sells: result});
+    res.render('sales', {sales: result});
 };
