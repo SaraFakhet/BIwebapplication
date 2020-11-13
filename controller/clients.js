@@ -9,7 +9,7 @@ module.exports = function(app) {
 controller.clients = async function(req, res, next){
     var result = "Clients : ";
     
-    await axios.get(process.env.URL_RELATION_CLIENT + '/clients').then(function (response) {
+    await axios.get(process.env.URL_RELATION_CLIENT + '/client-account-list').then(function (response) {
         result = result.concat(JSON.stringify(response.data));
     }).catch((err) => {
         result = result.concat(err.data);
