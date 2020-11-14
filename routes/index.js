@@ -4,6 +4,11 @@ var app = express();
 var logger = require('../logs');
 
 var User = require('../models/user_template')(app);
+
+var Segmentation = require('../models/segmentation');
+var LeastSold = require('../models/leastSoldProducts');
+var MostSold = require('../models/mostSoldProducts');
+
 var template = require('../controller/template_controller')(app);
 var hello = require('../controller/hello')(app);
 var product = require('../controller/products')(app);
@@ -22,6 +27,34 @@ router.get('/decisionnel/clients', client.clients);
 router.get('/decisionnel/produits', product.products);
 router.get('/decisionnel/ventes', vente.sales);
 
+// To change in the futur, only for tests now
+
+router.get('/segmentation', async function(req, res, next) {
+  try {
+    var result = await Segmentation.findAll();
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+  }
+});
+
+router.get('/leastSold', async function(req, res, next) {
+  try {
+    var result = await LeastSold.findAll();
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+  }
+});
+
+router.get('/mostSold', async function(req, res, next) {
+  try {
+    var result = await MostSold.findAll();
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+  }
+});
 
 /**@swagger
  * /users:
