@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <li><%= sales %></li>
-
+    <title>Quantité de produits vendus</title>
 </head>
+<body>
+<h1>Quantité de produits vendus</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td style="font-weight: bold">Code Produit</td>
+            <td style="padding-left: 5px; font-weight: bold;">Total des Ventes</td>
+            <td style="padding-left: 5px; font-weight: bold;">Ventes Web</td>
+            <td style="padding-left: 5px; font-weight: bold">Ventes Magasin</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0;  i < productquantity.length; i++) {%>
+            <tr>
+                <td>
+                    <%=productquantity[i].productCode%>
+                </td>
+                <td style="padding-left: 5px; text-align: center;">
+                    <%=productquantity[i].totalQuantity%>
+                </td>
+                <td style="padding-left: 5px; text-align: center;">
+                    <%=productquantity[i].webQuantity%>
+                </td>
+                <td style="padding-left: 5px; text-align: center;">
+                    <%=productquantity[i].storeQuantity%>
+                </td>
+            </tr>
+        <%}%>
+    </tbody>
+</table>
+
+</body>
 </html>

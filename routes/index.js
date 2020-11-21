@@ -8,12 +8,14 @@ var User = require('../models/user_template')(app);
 var Segmentation = require('../models/segmentation');
 var LeastSold = require('../models/leastSoldProducts');
 var MostSold = require('../models/mostSoldProducts');
+const { response } = require('express');
 
 var template = require('../controller/template_controller')(app);
 var hello = require('../controller/hello')(app);
 var product = require('../controller/products')(app);
 var client = require('../controller/clients')(app);
-var vente = require('../controller/sales')(app);
+//var vente = require('../controller/sales')(app);
+var segmentation = require('../controller/segmentation')(app);
 
 /* GET home page. */
 /*router.get('/', function(req, res, next) {
@@ -21,40 +23,16 @@ var vente = require('../controller/sales')(app);
 });*/
 
 router.get('/', template.index)
+
 router.get('/decisionnel/hello', hello.hello);
 router.get('/decisionnel/hello/all', hello.helloAll);
 router.get('/decisionnel/clients', client.clients);
 router.get('/decisionnel/produits', product.products);
-router.get('/decisionnel/ventes', vente.sales);
+//router.get('/decisionnel/ventes', vente.sales);
+//router.get('/decisionnel/ventes-magasin', vente.storeSales);
+//router.get('/decisionnel/ventes-web', vente.webSales);
 
-// To change in the futur, only for tests now
-
-router.get('/segmentation', async function(req, res, next) {
-  try {
-    var result = await Segmentation.findAll();
-    res.status(200).json(result);
-  } catch (error) {
-    logger.error(error);
-  }
-});
-
-router.get('/leastSold', async function(req, res, next) {
-  try {
-    var result = await LeastSold.findAll();
-    res.status(200).json(result);
-  } catch (error) {
-    logger.error(error);
-  }
-});
-
-router.get('/mostSold', async function(req, res, next) {
-  try {
-    var result = await MostSold.findAll();
-    res.status(200).json(result);
-  } catch (error) {
-    logger.error(error);
-  }
-});
+router.get('/decisionnel/products-quantity', segmentation.productsQuantity);
 
 /**@swagger
  * /users:
