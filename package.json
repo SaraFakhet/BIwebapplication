@@ -49,5 +49,14 @@
     "sequelize": "^6.3.3",
     "supertest": "^4.0.2",
     "swagger-ui-express": "^4.1.4"
+  },
+  "nyc": {
+    "exclude": [
+      "views/",
+      "models/",
+      "config/",
+      "logs/",
+      "tests/"
+    ]
   }
 }
