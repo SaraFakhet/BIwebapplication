@@ -5,6 +5,11 @@ cache:
   paths:
     - node_modules/
 
+services:
+  - name: registry.gitlab.com/ursi2021/applications/dev-db:latest
+    alias: db-apps
+
 test_test:
   script:
     - npm install
+    - npm test
