@@ -4,9 +4,9 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 // login to mariadb database
 // ex : new  new Sequelize(<dbname>, <user>, <password>, ...);
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER,process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
+const sequelize = new Sequelize(process.env.URSI_DB_NAME, process.env.URSI_DB_USER,process.env.URSI_DB_PASSWORD, {
+  host: process.env.URSI_DB_HOST,
+  port: Number(process.env.URSI_DB_PORT),
   logging: msg => logger.verbose(msg),
   dialectOptions: {
     timezone: 'Etc/GMT0'
