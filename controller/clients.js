@@ -9,7 +9,7 @@ module.exports = function(app) {
 controller.clients = async function(req, res, next){
     var result = [];
     
-    await axios.get(process.env.URL_RELATION_CLIENT + '/client-account-list').then(function (response) {
+    await axios.get(process.env.KONG_URL + "/" + process.env.URL_RELATION_CLIENT + '/client-account-list').then(function (response) {
         response.data.map((client) => {
             result.push({
                 id: client.id,

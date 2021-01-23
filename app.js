@@ -12,6 +12,45 @@ require('dotenv-flow').config({path:'config/'});
 
 var app = express();
 
+var axios = require('axios');
+
+var registered = false;
+
+function register_kong() {
+  axios
+      .post('http://kong:8081/services/', {
+        name: process.env.APP_NAME,
+        url: 'http://' + process.env.APP_NAME
+      })
+      .then(res => {
+        console.log(`statusCode: ${res.statusCode}`)
+        console.log(res)
+      })
+      .catch(error => {
+        console.error(error)
+        return false;
+      })
+
+  axios
+      .post('http://kong:8081/services/' + process.env.APP_NAME + '/routes', {
+        paths: ["/" + process.env.APP_NAME],
+        name: process.env.APP_NAME
+      })
+      .then(res => {
+        console.log(`statusCode: ${res.statusCode}`)
+        console.log(res)
+      })
+      .catch(error => {
+        console.error(error)
+        return false;
+      })
+  return true;
+}
+
+while (registered === false) {
+  registered = register_kong();
+}
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -12,7 +12,7 @@ controller.productsQuantity = async function(req, res, next) {
 
     var web_products = new Map();
     var store_products = new Map();
-    await axios.get(process.env.URL_GESTION_COMMERCIALE +'/all-sales').then(function (data) {
+    await axios.get(process.env.KONG_URL + "/" + process.env.URL_GESTION_COMMERCIALE +'/all-sales').then(function (data) {
         data.data.map(sale => {
             let list = [];
             list.push(sale["product-quantity-map"]);
