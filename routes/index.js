@@ -24,10 +24,10 @@ var segmentation = require('../controller/segmentation')(app);
 
 router.get('/', template.index)
 
-router.get('/decisionnel/hello', hello.hello);
-router.get('/decisionnel/hello/all', hello.helloAll);
-router.get('/decisionnel/clients', client.clients);
-router.get('/decisionnel/produits', product.products);
+router.get(process.env.KONG_URL + '/decisionnel/hello', hello.hello);
+router.get(process.env.KONG_URL + '/decisionnel/hello/all', hello.helloAll);
+router.get(process.env.KONG_URL + '/decisionnel/clients', client.clients);
+router.get(process.env.KONG_URL + '/decisionnel/produits', product.products);
 //router.get('/decisionnel/ventes', vente.sales);
 //router.get('/decisionnel/ventes-magasin', vente.storeSales);
 //router.get('/decisionnel/ventes-web', vente.webSales);
