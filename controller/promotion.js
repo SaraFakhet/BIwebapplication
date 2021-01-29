@@ -12,41 +12,15 @@ controller.promotion = async function(req, res, next) {
     var web_products = new Map();
     var store_products = new Map();
 
-    var json = {
-        "data": [
-          {
-            "start-date": "2020-10-20T00:00:00Z",
-            "end-date": "2021-10-28T00:00:00Z",
-            "product-quantity-map": [{
-              "product-code": "4047443105875",
-              "quantity": 52
-            }, {
-                "product-code": "4047443105876",
-                "quantity": 52
-              }],
-            "sell-type": "Store"
-          },
-          {
-            "start-date": "2020-10-28T00:00:00Z",
-            "end-date": "2021-10-28T00:00:00Z",
-            "product-quantity-map": [{
-              "product-code": "4047443105875",
-              "quantity": 52
-            }],
-            "sell-type": "Web",
-            "acount": "Test"
-          }
-        ]
-      };
-
-      /*
     await axios.get(process.env.KONG_URL + "/" + process.env.URL_GESTION_COMMERCIALE +'/all-sales').then(function (data) {
+        if (!data.data || data.data.length == 0){
+            return res.status(200).json([]).end();
+        }
         data.data.map(sale => {
             let list = [];
             list.push(sale["product-quantity-map"]);
             list[list.length - 1].map(product => {
                 if (sale["sell-type"] === "Web") {
-                    console.log(product["quantity"]);
                     web_products.set(product["product-code"], web_products.has(product["product-code"]) ? web_products.get(product["product-code"]) + product["quantity"] : product["quantity"]);
                 }
                 else {
@@ -54,21 +28,8 @@ controller.promotion = async function(req, res, next) {
                 }
             })
         })
-    })
-    */
-
-    json.data.map(sale => {
-        let list = [];
-        list.push(sale["product-quantity-map"]);
-        list[list.length - 1].map(product => {
-            if (sale["sell-type"] === "Web") {
-                console.log(product["quantity"]);
-                web_products.set(product["product-code"], web_products.has(product["product-code"]) ? web_products.get(product["product-code"]) + product["quantity"] : product["quantity"]);
-            }
-            else {
-                store_products.set(product["product-code"], store_products.has(product["product-code"]) ? store_products.get(product["product-code"]) + product["quantity"] : product["quantity"]);
-            }
-        })
+    }).catch( error => {
+        return res.status(200).json([]);
     })
 
     var result = [];
@@ -105,18 +66,19 @@ controller.promotion = async function(req, res, next) {
 
     result.sort((a, b) => a.totalQuantity - b.totalQuantity)
 
-    console.log('RESUUUUULT : ')
-    console.log(result);
-
     var promo = [];
 
-    for (let index = 0; index < 2; index++) {
+    if (result.length < 2) {
+        return res.status(200).json(promo);
+    }
+
+    for (let index = 0; index < result.length; index++) {
         const element = {
             "product-code" : result[index].productCode
         };
         promo.push(element);
     }
 
-    res.status(200).json(promo);
+    return res.status(200).json(promo);
 
 }
