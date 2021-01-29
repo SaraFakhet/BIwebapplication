@@ -16,6 +16,7 @@ var product = require('../controller/products')(app);
 var client = require('../controller/clients')(app);
 //var vente = require('../controller/sales')(app);
 var segmentation = require('../controller/segmentation')(app);
+var promotion = require('../controller/promotion')(app);
 
 /* GET home page. */
 /*router.get('/', function(req, res, next) {
@@ -33,6 +34,7 @@ router.get(process.env.KONG_URL + '/decisionnel/produits', product.products);
 //router.get('/decisionnel/ventes-web', vente.webSales);
 
 router.get('/decisionnel/products-quantity', segmentation.productsQuantity);
+router.get('/decisionnel/promotion', promotion.promotion);
 
 /**@swagger
  * /users:
