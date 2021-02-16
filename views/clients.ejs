@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Informations clients</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <h1>Liste des informations clients</h1>
-    <% for(var i = 0;  i < clients.length; i++) {%>
-        <tr>
-            <p><%= clients[i]%></p>
-        </tr>
-    <%}%>
+    <title>Liste des clients</title>
 </head>
+<body>
+<h1>Liste des clients</h1>
+
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td style="padding-left: 5px">Account</td>
+        <td style="padding-left: 5px">Lastname</td>
+        <td style="padding-left: 5px">Firstname</td>
+        <td style="padding-left: 5px">Date Of Birth</td>
+        <td style="padding-left: 5px">Civility</td>
+        <td style="padding-left: 5px">Customer Loyalty</td>
+        <td style="padding-left: 5px">Credit</td>
+        <td style="padding-left: 5px">Payment</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0;  i < clients.length; i++) {%>
+    <tr>
+        <td><%=clients[i].id%></td>
+        <td style="padding-left: 5px"><%=clients[i].account%></td>
+        <td style="padding-left: 5px"><%=clients[i].lastname%></td>
+        <td style="padding-left: 5px"><%=clients[i].firstname%></td>
+        <td style="padding-left: 5px"><%=clients[i].dob%></td>
+        <td style="padding-left: 5px"><%=clients[i].civility%></td>
+        <td style="padding-left: 5px"><%=clients[i].customerLoyalty%></td>
+        <td style="padding-left: 5px"><%=clients[i].credit%></td>
+        <td style="padding-left: 5px"><%=clients[i].payment%></td>
+    </tr>
+    <%}%>
+    </tbody>
+</table>
+<div style="margin: 10px"><%=clients.myerror%></div>
+</body>
 </html>

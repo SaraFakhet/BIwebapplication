@@ -4,9 +4,19 @@ var app = express();
 var logger = require('../logs');
 
 var User = require('../models/user_template')(app);
+
+var Segmentation = require('../models/segmentation');
+var LeastSold = require('../models/leastSoldProducts');
+var MostSold = require('../models/mostSoldProducts');
+const { response } = require('express');
+
 var template = require('../controller/template_controller')(app);
-
-
+var hello = require('../controller/hello')(app);
+var product = require('../controller/products')(app);
+var client = require('../controller/clients')(app);
+//var vente = require('../controller/sales')(app);
+var segmentation = require('../controller/segmentation')(app);
+var promotion = require('../controller/promotion')(app);
 
 /* GET home page. */
 /*router.get('/', function(req, res, next) {
@@ -14,11 +24,17 @@ var template = require('../controller/template_controller')(app);
 });*/
 
 router.get('/', template.index)
-router.get('/decisionnel/hello', template.hello);
-router.get('/decisionnel/hello/all', template.helloall);
-router.get('/decisionnel/produits', template.produits);
-router.get('/decisionnel/clients', template.clients);
 
+router.get(process.env.KONG_URL + '/decisionnel/hello', hello.hello);
+router.get(process.env.KONG_URL + '/decisionnel/hello/all', hello.helloAll);
+router.get(process.env.KONG_URL + '/decisionnel/clients', client.clients);
+router.get(process.env.KONG_URL + '/decisionnel/produits', product.products);
+//router.get('/decisionnel/ventes', vente.sales);
+//router.get('/decisionnel/ventes-magasin', vente.storeSales);
+//router.get('/decisionnel/ventes-web', vente.webSales);
+
+router.get('/decisionnel/products-quantity', segmentation.productsQuantity);
+router.get('/decisionnel/promotion', promotion.promotion);
 
 /**@swagger
  * /users:
